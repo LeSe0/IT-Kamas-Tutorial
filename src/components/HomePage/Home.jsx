@@ -4,22 +4,21 @@ import c from './Home.module.css'
 // import Posts from './Posts/Posts'
 import PostsContainer from './Posts/PostsContainer'
 
-function HomePage(props){
-    let data = props.store.getState()
+function HomePage(){
     return (
         <div className = {c.content}>
             <div className = {c.wallpaperChoose}>Choose your wallpaper</div>
             <div className = {c.userInfo}>
-                <img src={data.homePage.userInfo.img} alt="" className = {c.profilePhoto}/><br />
-                ID : {data.homePage.userInfo.id},<br />
-                Thread : {`${data.homePage.userInfo.firstName} ${data.homePage.userInfo.secondName}`},<br />
-                Country : {data.homePage.userInfo.country},<br />
-                City : {data.homePage.userInfo.city}.<br />
+                <img src='https://maxcdn.icons8.com/Share/icon/nolan/Users/user_male1600.png' alt="" className = {c.profilePhoto}/><br />
+                ID : LeSeo,<br />
+                Thread : Levon Stepanyan,<br />
+                Country : Armenia,<br />
+                City : Ararat.<br />
             </div>
             <div className = {c.posts}>
-                <PostsContainer store = {props.store}/>
+                <PostsContainer/>
             </div>
-        </div>
+        </div>   
     )
 }
 

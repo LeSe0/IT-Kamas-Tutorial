@@ -6,7 +6,7 @@ function MyPosts(props){
         <div className = {c.myPosts}>
             {props.posts.map((el , i) =>{
                 return (
-                  <div className = {c.post__item}>
+                  <div className = {c.post__item} key = {el.id}>
                     <div className = {c.postPhoto}><img src={el.img} alt="" /></div>
                     <div className = {c.postInnerCont}>{el.postInner}</div>
                     <div className = {c.actions}>

@@ -1,15 +1,13 @@
-import React, {useState} from 'react'
-import { NavLink } from 'react-router-dom'
-import Messages from './DialogComponents/Messages/Messages'
-import Persons from './DialogComponents/Persons/Persons'
+import React from 'react'
+import MessagesContainer from './DialogComponents/Messages/MessagesContainer'
+import PersonsContainer from './DialogComponents/Persons/PersonsContainer'
 import c from './Dialogs.module.css'
 
-function Dialogs(props){
-    let data = props.store.getState().dialogsPage
+function Dialogs(){
     return (
         <div className = {c.dialogs}>
-            <Persons personData = {data.persons}/>
-            <Messages store = {props.store}/>
+            <PersonsContainer/>
+            <MessagesContainer/>
         </div>
     )
 }

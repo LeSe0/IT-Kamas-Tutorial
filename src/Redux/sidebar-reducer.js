@@ -20,6 +20,11 @@ let initialState = [
             class : 'news_nav_button'
         },
         {
+            navButton : 'Find Users',
+            navTo : '/findUsers',
+            class : 'finsUsers_nav_button'
+        },
+        {
             navButton : 'Settings',
             navTo : '/Settings',
             class : 'settings_nav_button'

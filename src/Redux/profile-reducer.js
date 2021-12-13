@@ -44,26 +44,29 @@ let initialState = {
 
 const profileReducer = (state = initialState , action) =>{
     switch (action.type) {
-        case ADD_POST:
-            if(state.newPostText != ''){
+        case ADD_POST:{
                 let newPost = {
-                    id : state.posts[state.posts.length - 1].id++,
+                    id : state.posts[state.posts.length - 1].id + 1,
                     img : 'https://maxcdn.icons8.com/Share/icon/nolan/Users/user_male1600.png',
                     postInner : state.newPostText,
                     likes : 0,
                     shares : 0
                 }
-                state.posts.push(newPost)
-                state.newPostText = ''
-            }
-            return state;
-        case CHANGE_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+                return {
+                    ...state,
+                    posts : [...state.posts, newPost],
+                    newPostText : ''
+                }
+        }
+        case CHANGE_POST_TEXT:{
+            return {
+                ...state,
+                newPostText : action.newText
+            };
+        }
         default : 
             return state;
     }
-    return state
 }
 
 export let postActionCreator = () =>({type : ADD_POST})

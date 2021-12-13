@@ -1,22 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
-import { setState } from 'react';
 import Header from './components/Header/Header';
-import Nav from './components/Nav/Nav';
-import { Router , Route } from 'react-router';
+import { Route } from 'react-router';
 import HomePage from './components/HomePage/Home';
 import { BrowserRouter } from 'react-router-dom';
 import Dialogs from './components/Dialogs/Dialogs';
+import NavContainerRR from './components/Nav/NavContainer';
+import FindUsers from './components/FindUsers/FindUsers';
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
-        <Nav navbar = {props.data.navbar}/>
+        <NavContainerRR/>
         <div className = 'content'>
-          <Route path = '/home'><HomePage store = {props.store}/></Route>
-          <Route path = '/dialogs'><Dialogs store = {props.store}/></Route>
+          <Route path = '/home'><HomePage/></Route>
+          <Route path = '/dialogs'><Dialogs/></Route>
+          <Route path = '/findUsers'><FindUsers /></Route>
         </div>
       </div>
     </BrowserRouter>

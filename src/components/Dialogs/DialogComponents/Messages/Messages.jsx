@@ -4,13 +4,12 @@ import c from './Messages.module.css'
 import MessageFormContainer from './MessagesComponent/MessageFormContainer'
 
 function Messages(props){
-    let data = props.store.getState().dialogsPage
     return (
         <div className = {c.messages}>
             <div className = {c.messagesCont}>
-                {data.dialog.messages.map((el , i) =>{
+                {props.messages.map((el , i) =>{
                     return (
-                        <div className = {c.message__item}>
+                        <div className = {c.message__item} key = {el.id}>
                             <div className = {c.message__img}> <img src= {el.img} alt="" /></div>
                             <div className = {c.theMessage}>
                                 <div>{el.message}</div>
@@ -21,7 +20,7 @@ function Messages(props){
                 })}
             </div>
             <div className = {c.messageFormContainer}>
-                <MessageFormContainer store = {props.store}/>
+                <MessageFormContainer/>
             </div>
         </div>
     )

@@ -11,10 +11,11 @@ function Persons(props){
                 <button type="submit" className = {c.submitButton}><i className={`fas fa-search ${c.search__item} ${c.search__icon}`}></i></button>
                 <input type="search" name="" id="" className = {`${c.search__item} ${c.searchInp}`} placeholder = "Search dialog partner?"/>
             </form>
-            {props.personData.map((el , i) =>{
+            {props.persons.map((el , i) =>{
                 return (
                     <NavLink to = {`/Dialogs/person${el.id}`} activeClassName = {c.active} onClick = {(e) =>{
-                    }}>
+                    }}
+                    key = {el.id}>
                         <div className = {c.personItem}>{el.name}</div>
                     </NavLink>
                 )

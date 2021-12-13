@@ -1,6 +1,4 @@
-import React, {useState} from 'react'
-import { NavLink } from 'react-router-dom'
-import { messageTextActionCreator, messageActionCreator } from '../../../../../Redux/dialog-reducer';
+import React from 'react'
 import c from './MessageForm.module.css'
 import cs from '../Messages.module.css'
 
@@ -8,7 +6,7 @@ function MessageForm(props){
     let textForm = React.createRef();
 
     let newMessageAdd = () =>{
-        props.addMessage()
+        props.addMessage();
     }
 
     let onMessageChange = () =>{
@@ -26,8 +24,9 @@ function MessageForm(props){
                 className = {c.messageTextArea} 
                 placeholder = 'Wanna say anything to your friend?' 
                 maxLength = '500'
-                onChange = {onMessageChange}></textarea>
-            <input type="submit" value="Send" />
+                onChange = {onMessageChange}
+                required ={true}></textarea>
+            <input type="submit" value="Send"/>
         </form>
     )
 }

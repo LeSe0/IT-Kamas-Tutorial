@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react'
 import '../../../App.css'
-import { postActionCreator , newTextActionCreator } from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts/MyPosts'
 import c from './Posts.module.css'
 
@@ -23,7 +22,9 @@ function Posts(props){
                     newPost()
                 }
             }>
-                <textarea placeholder = "Something new..." className = {c.postTextInput} ref = {el} value = {props.newPostText} onChange = {onPostChange}/>
+                <textarea placeholder = "Something new..." className = {c.postTextInput} 
+                ref = {el} value = {props.newPostText} onChange = {onPostChange}
+                required = {true}/>
                 <input type="submit" value="Add" className = {c.postSubmitInput}/>
             </form>
             <div className = {c.myPosts}>
