@@ -5,7 +5,6 @@ import UsersContainer from './componentsFUsers/UsersContainer'
 function FindUsers(){
     return (
         <div className = {c.findUsers_container}>
-            <div className = {c.title}>Users</div>
             <UsersContainer />
         </div>
     )

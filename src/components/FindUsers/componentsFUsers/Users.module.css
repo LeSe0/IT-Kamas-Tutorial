@@ -87,3 +87,59 @@
     font-size: 18px;
     margin-left: 10px;
 }
+
+.selectedPage{
+    color: white;
+    background-color: rgb(54, 63, 73);
+    transition: .5s;
+    border-radius: 10px;
+}
+
+.disablePage{
+    
+}
+
+.pagesContainer{
+    display: flex;
+    overflow-x: scroll;
+    width: 800px;
+}
+
+.pagesContainer::-webkit-scrollbar{
+    display: block;
+}
+
+.pagesContainer::-webkit-scrollbar-thumb{
+    background-color: rgb(54, 63, 73);
+    border-radius: 15px;
+}
+
+.pagesCountContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page{
+    margin-left: 15px;
+    padding:5px 15px 5px 15px;
+    cursor: pointer;
+}
+
+i{
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.currentPage{
+    color: rgb(54, 63, 73);
+}
+
+span::selection{
+   display: none;
+}
+
+.rightArrows{
+    margin-left: 15px;
+    letter-spacing: 5px;
+}

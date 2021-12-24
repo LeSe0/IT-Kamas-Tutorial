@@ -14,7 +14,12 @@ nav{
     padding: 20px;
     margin-top: 15px;
 }
-  
+
+.container{
+    position: sticky;
+    top: 5px;
+}
+
 .nav__item:hover{
       background-color: white;
       color: rgb(54, 63, 73);

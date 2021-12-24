@@ -1,4 +1,3 @@
-import React, {useState} from 'react'
 import '../../App.css'
 import c from './Home.module.css'
 // import Posts from './Posts/Posts'
