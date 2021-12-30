@@ -4,14 +4,17 @@ let initialState = {
     initialPage : 1,
     totalUsers : '',
     totalPages : '',
+    isFetching : false,
+    pagesMargin : 1,
+    pagesFSlice : 4
 }
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_USERS_TOTAL_SIZE = 'SET_USERS_TOTAL_SIZE'
-// const SET_USERS_TOTAL_PAGES = 'SET_USERS_TOTAL_PAGES'
 const SELECT_PAGE = 'SELECT_PAGE'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 const findUsersReducer = (state = initialState , action) =>{
     switch(action.type){
@@ -45,15 +48,15 @@ const findUsersReducer = (state = initialState , action) =>{
                 ...state , 
                 totalUsers : action.usersTotal,
             }
-        // case SET_USERS_TOTAL_PAGES :
-        //     return {
-        //         ...state , 
-        //         totalPages : action.totalPages
-        //     }
         case SELECT_PAGE :
             return {
                 ...state,
                 initialPage : action.selectPage
+            }
+        case TOGGLE_IS_FETCHING :
+            return {
+                ...state ,
+                isFetching : action.count
             }
         default : return state
     }
@@ -65,5 +68,6 @@ export const setUsersAC = (users) =>{return {type : SET_USERS , users}}
 export const unFollowAC = (userId) => {return {type : UNFOLLOW, userId}}
 export const totalUsersAC = (usersTotal) =>{return {type : SET_USERS_TOTAL_SIZE , usersTotal}}
 export const selectPageAC = (selectPage) =>{return {type : SELECT_PAGE , selectPage}}
+export const toggleIsFetching = (count) =>{return {type : TOGGLE_IS_FETCHING , count}} 
 
 export default findUsersReducer

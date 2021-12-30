@@ -1,0 +1,39 @@
+.pagesCount{
+    color: #454b4e;
+    font-weight: 900;
+    font-size: 1.4rem;
+    margin-right:5px ;
+}
+
+.pageInfoContainer{
+    display: flex;
+    align-items: center;
+}
+
+.totalUsers{
+    border-right:1px solid grey;
+    padding-right: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 605;
+    font-size: 1.4rem;
+    color: #252627;
+}
+
+.currentPage{
+    font-weight: 605;
+    font-size: 1rem;
+    padding-left: 8px;
+    color: #252627;
+}
+
+.currentPageContent{
+    color: #484d50;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-left:5px ;
+}
+
+.container::selection{
+    display: none;
+}
