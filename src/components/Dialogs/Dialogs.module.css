@@ -1,0 +1,5 @@
+.dialogs{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 0.6fr 1.5fr;
+}

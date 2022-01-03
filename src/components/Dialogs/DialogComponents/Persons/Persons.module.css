@@ -1,0 +1,57 @@
+.personItem{
+    margin-top: 15px;
+    font-size: 28px;
+    transition: 0.5s;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.personItem:hover{
+    color: #fff;
+    background-color: rgb(54, 63, 73);  
+}
+
+.persons{
+    border-right: 2px solid rgb(54, 63, 73);
+}
+
+.searchInpContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.search__item{
+    margin: 5px;
+}
+
+.searchInp{
+    outline: none;
+    width:  200px;
+    height: 30px;
+    text-align: center;
+}
+
+.search__icon{
+    color: rgb(54, 63, 73);
+}
+
+.submitButton{
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(54, 63, 73);
+}
+
+.active > .personItem{
+    font-size: 35px;
+    color: white;
+    background: rgb(54, 63, 73);
+}

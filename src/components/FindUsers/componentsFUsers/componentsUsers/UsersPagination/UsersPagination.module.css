@@ -1,0 +1,92 @@
+.selectedPage{
+    color: white;
+    background-color: rgb(54, 63, 73);
+    transition: .5s;
+    border-radius: 10px;
+}
+
+.pagesContainer{
+    width: 350px;
+    height: 20px;
+}
+
+.pagesContainer::-webkit-scrollbar{
+    display: block;
+}
+
+.pagesContainer::-webkit-scrollbar-thumb{
+    background-color: rgb(54, 63, 73);
+    border-radius: 15px;
+}
+
+.pagesCountContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    width: 40px;
+    height: 40px;
+    padding:5px 15px 5px 15px;
+    cursor: pointer;
+}
+
+.arrows{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.currentPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    width: 40px;
+    height: 40px;
+    padding:5px 15px 5px 15px;
+    cursor: pointer;
+    background: rgb(55, 60, 65);
+    color : white
+}
+
+span::selection{
+   display: none;
+}
+
+.disabledArrow{
+    display: none;
+}
+
+.firstPage{
+    padding:5px 15px 5px 15px;
+}
+
+.button{
+    border: 1px solid grey;
+    transition: 0.5s;
+}
+
+.button:hover{
+    background-color:rgba(38, 40, 43, 0.151) ;
+}
+
+.lastPage{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.firstPage{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

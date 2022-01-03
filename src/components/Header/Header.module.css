@@ -1,0 +1,35 @@
+header{
+    background-color:rgb(54, 63, 73);
+    display: grid;
+    grid-template-areas:'any logo login';
+    color: white;
+    width: 100vw;
+    height: 100px;
+    grid-area: h;
+}
+  
+.header__text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: logo;
+    font-family: 'Sora' , sans-serif;
+    cursor: pointer;
+}
+
+.authContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: login;
+}
+
+.navItem{
+    color: white;
+    font-size: 18px;
+}
+
+.logged{
+    color: white;
+    font-size: 18px;
+}
