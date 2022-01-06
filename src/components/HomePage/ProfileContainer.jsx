@@ -26,7 +26,7 @@ class ProfileContainer extends React.Component{
                 contactIcons = {[...this.props.contactIcons]}
                 aboutMe = {this.props.userInfo.aboutMe}
                 updateStatus = {this.props.updateStatus}
-                createPost = {this.props.userInfo.createPost}
+                createPost = {this.props.createPost}
             />
         </>
     }

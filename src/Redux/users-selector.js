@@ -1,6 +1,12 @@
+// import { createSelector } from 'reselect'
+
 export const getUsers = (state) =>{
     return state.findUsers.users
 }
+
+// export const getUsersSuper = createSelector(getUsers , (users) =>{
+//     return users.filter(a =>{return true})
+// })
 
 export const getUsersCount = (state) =>{
     return state.findUsers.usersCount
