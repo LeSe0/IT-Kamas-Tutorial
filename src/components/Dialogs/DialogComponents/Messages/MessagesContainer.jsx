@@ -1,5 +1,6 @@
 import Messages from './Messages.jsx'
 import { connect } from 'react-redux'
+import { messageActionCreator } from '../../../../Redux/dialog-reducer.js'
 
 function State(state){
     return {
@@ -7,12 +8,6 @@ function State(state){
     }
 }
 
-function Methods(body){
-    return {
-
-    }
-}
-
-const MessagesContainer = connect(State , Methods)(Messages)
+const MessagesContainer = connect(State , {messageActionCreator})(Messages)
 
 export default MessagesContainer

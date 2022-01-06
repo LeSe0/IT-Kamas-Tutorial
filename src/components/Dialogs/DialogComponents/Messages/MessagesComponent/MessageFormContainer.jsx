@@ -1,4 +1,3 @@
-import { messageTextActionCreator, messageActionCreator } from '../../../../../Redux/dialog-reducer';
 import MessageForm from './MessageForm';
 import { connect } from 'react-redux';
 
@@ -23,21 +22,9 @@ import { connect } from 'react-redux';
 
 let State = (state) =>{
     return {
-        newMessageText : state.dialogsPage.newMessageText,
     }
 }
 
-let Methods = (dispatch) =>{
-    return {
-        addMessageChanges : (text) =>{
-            dispatch(messageTextActionCreator(text))
-        },
-        addMessage : () =>{
-            dispatch(messageActionCreator())
-        },
-    }
-}
-
-const MessageFormContainer = connect(State , Methods)(MessageForm)
+const MessageFormContainer = connect(State , {})(MessageForm)
 
 export default MessageFormContainer

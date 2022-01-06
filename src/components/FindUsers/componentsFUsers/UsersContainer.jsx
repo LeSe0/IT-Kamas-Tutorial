@@ -1,29 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { follow, addUsers, unFollow, setTotalUsers, selectPage, toggleIsFetching, toggleIsFollowing, followingInProcess } from '../../../Redux/fUsers-reducer';
-import * as axios from "axios";
+import { unfollowThunk, followThunk, getUsers } from '../../../Redux/fUsers-reducer';
 import Users from './Users.jsx'
 import Preloader from '../../common/Preloader.jsx'
-import { usersAPI } from '../../../api/api';
 
 class UsersContainer extends React.Component{
     componentDidMount(){
-        this.props.toggleIsFetching(true)
-        usersAPI.getUsers(this.props.initialPage , this.props.usersCount).then(response =>{
-            this.props.toggleIsFetching(false)  
-            this.props.setTotalUsers(response.totalCount)
-            this.props.addUsers(response.items);
-        })
+       this.props.getUsers(this.props.initialPage , this.props.usersCount)
     }
 
     changePage(page){
-        this.props.toggleIsFetching(true)
-        this.props.selectPage(page);
-        usersAPI.getUsers(page , this.props.usersCount).then(response =>{
-            this.props.toggleIsFetching(false)  
-            this.props.setTotalUsers(response.totalCount)
-            this.props.addUsers(response.items);
-        })
+        this.props.getUsers(page , this.props.usersCount)
     }
 
     render(){
@@ -34,11 +21,10 @@ class UsersContainer extends React.Component{
                changePage = {this.changePage.bind(this)}
                initialPage = {this.props.initialPage}
                users = {this.props.users}
-               unFollow = {this.props.unFollow}
-               follow = {this.props.follow}
+               unFollow = {this.props.unfollowThunk}
+               follow = {this.props.followThunk}
                pagesMargin = {this.props.pagesMargin}
                pagesCountOS = {this.props.pagesFSlice}
-               followingInProcess = {this.props.followingInProcess}
                followInReq = {this.props.followInReq}
                /></>
     }
@@ -59,11 +45,5 @@ function State(state){
 }
 
 export default connect(State , {
-    follow,
-    unFollow,
-    addUsers,
-    setTotalUsers,
-    selectPage,
-    toggleIsFetching,
-    followingInProcess
+    followThunk,getUsers, unfollowThunk
 })(UsersContainer)

@@ -26,12 +26,6 @@ function State(state){
     }
 }
 
-function Methods(dispatch){
-    return {
-
-    }
-}
-
-const NavContainerRR = connect(State , Methods)(Nav)
+const NavContainerRR = connect(State , {})(Nav)
 
 export default NavContainerRR

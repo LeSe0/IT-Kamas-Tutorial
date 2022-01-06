@@ -1,3 +1,5 @@
+import { usersAPI , followAPI} from "../api/api"
+
 let initialState = {
     users :  [] ,
     usersCount : 10,
@@ -78,5 +80,36 @@ export const setTotalUsers = (usersTotal) =>{return {type : SET_USERS_TOTAL_SIZE
 export const selectPage = (selectPage) =>{return {type : SELECT_PAGE , selectPage}}
 export const toggleIsFetching = (count) =>{return {type : TOGGLE_IS_FETCHING , count}}
 export const followingInProcess = (isFollowing, userId) => ({type : FOLLOWING_IN_PROCESS , isFollowing , userId})
+
+
+export const getUsers = (initialPage , usersCount) => (dispatch) =>{
+    dispatch(toggleIsFetching(true))
+    dispatch(selectPage(initialPage))
+    usersAPI.getUsers(initialPage , usersCount).then(response =>{
+        dispatch(toggleIsFetching(false))  
+        dispatch(setTotalUsers(response.totalCount))
+        dispatch(addUsers(response.items));
+    })
+}
+
+export const unfollowThunk = (id) => (dispatch) =>{
+    followAPI.unfollowRequest(id, followingInProcess)
+    .then(response =>{
+        if(response.resultCode === 0){
+            dispatch(unFollow(id))
+            dispatch(followingInProcess(false, id))
+        }
+    })
+}
+
+export const followThunk = (id) => (dispatch) =>{
+    followAPI.followRequest(id, followingInProcess)
+    .then(response =>{
+        if(response.resultCode === 0){
+            dispatch(follow(id))
+            dispatch(followingInProcess(false, id))
+        }
+    }) 
+}
 
 export default findUsersReducer

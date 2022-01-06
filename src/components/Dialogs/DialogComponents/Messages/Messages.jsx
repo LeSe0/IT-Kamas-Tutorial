@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react'
 import c from './Messages.module.css'
 import MessageFormContainer from './MessagesComponent/MessageFormContainer'
 
 function Messages(props){
+    let onSubmit = (data) =>{
+        props.messageActionCreator(data.newMessage)
+    }
+
     return (
         <div className = {c.messages}>
             <div className = {c.messagesCont}>
@@ -20,7 +23,7 @@ function Messages(props){
                 })}
             </div>
             <div className = {c.messageFormContainer}>
-                <MessageFormContainer/>
+                <MessageFormContainer onSubmit={onSubmit}/>
             </div>
         </div>
     )

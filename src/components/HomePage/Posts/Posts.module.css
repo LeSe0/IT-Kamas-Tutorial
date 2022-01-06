@@ -22,20 +22,6 @@
     font-size: 20px;
 }
 
-.postSubmitInput{
-    width: 100px;
-    height: 50px;
-    color: #000000;
-    background-color: #FFFFFF;
-    border: 1px solid rgb(54, 63, 73);
-    outline : none;
-    text-align: center;
-    transition: 0.5s;
-    font-weight: 600;
-    font-size: 23px;
-    cursor: pointer;
-}
-
 .postSubmitInput:hover{
     color: #fff;
     background-color: rgb(54, 63, 73);  

@@ -2,31 +2,20 @@ import React from 'react'
 import '../../../App.css'
 import MyPosts from './MyPosts/MyPosts'
 import c from './Posts.module.css'
+import {reduxForm, Field} from 'redux-form'
+import { maxLengthCreator , required } from '../../../utils/validators/validator'
+import { TextArea } from '../../common/FormControl'
+
+let maxLength = maxLengthCreator(10)
 
 function Posts(props){
-    let el = React.createRef();
-
-    let newPost = () =>{
-        props.addPost()
-    }
-
-    let onPostChange = () =>{
-        let text = el.current.value
-        props.updateNewPostText(text)
-    }
-
     return (
         <div className = {c.postField}>
             <div className={c.title}> Posts</div>
-            <form className = {c.postForm} onSubmit = {(e) =>{
-                    e.preventDefault();
-                    newPost()
-                }
-            }>
-                <textarea placeholder = "Something new..." className = {c.postTextInput} 
-                ref = {el} value = {props.newPostText} onChange = {onPostChange}
-                required = {true}/>
-                <input type="submit" value="Add" className = {c.postSubmitInput}/>
+            <form className = {c.postForm} onSubmit={props.handleSubmit}>
+                <Field component = {TextArea} placeholder = "Something new..." className = {c.postTextInput} 
+                    value = {props.newPostText}
+                    validate = {[required , maxLength]} name = 'postText'/>
             </form>
             <div className = {c.myPosts}>
                 <MyPosts posts = {props.post}/>
@@ -35,4 +24,6 @@ function Posts(props){
     )
 }
 
-export default Posts
+export default reduxForm({
+    form : 'profilePost'
+})(Posts)

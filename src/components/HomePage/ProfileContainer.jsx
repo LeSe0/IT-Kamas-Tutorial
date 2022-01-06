@@ -1,32 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { setProfileData } from '../../Redux/profile-reducer.js';
-import * as axios from "axios";
+import { getProfileInfo,getStatus,updateStatus, createPost } from '../../Redux/profile-reducer.js';
 import Profile from './Profile';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import { usersAPI } from '../../api/api.js';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect.js';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component{
     componentDidMount(){
-        let userId = this.props.match.params.userId
-        if(!userId){
-            userId = 2
-        }
-        usersAPI.getUserInfo(userId).then(response =>{
-            this.props.setProfileData(response)
-        })
+        this.props.getProfileInfo(this.props.match.params.userId);
+        this.props.getStatus(this.props.match.params.userId);
     }
 
     render(){
         return <>
             <Profile 
+                status = {this.props.status}
                 name = {this.props.fullName}
-                aboutMe = {this.props.aboutMe}
                 contacts = {{...this.props.contacts}}
                 lookingForAJob = {this.props.lookingForAJob}
                 lookingForAJobDescription = {this.props.lookingForAJobDescription}
                 photos = {{...this.props.photos}}
-                contactIcons = {[...this.props.contactIcons]}    
+                contactIcons = {[...this.props.contactIcons]}
+                aboutMe = {this.props.aboutMe}
+                updateStatus = {this.props.updateStatus}
+                createPost = {this.props.createPost}
             />
         </>
     }
@@ -35,10 +33,13 @@ class ProfileContainer extends React.Component{
 function State(state){
     return {
         ...state.homePage.userInfo,
-        contactIcons : state.homePage.contactIcons
+        contactIcons : state.homePage.contactIcons,
+        status : state.homePage.status
     }
 }
 
-let GetURLData = withRouter(ProfileContainer)
-
-export default connect(State , {setProfileData})(GetURLData)
+export default compose(
+    withAuthRedirect,
+    connect(State , {getProfileInfo, getStatus, updateStatus, createPost}),
+    withRouter,
+)(ProfileContainer)

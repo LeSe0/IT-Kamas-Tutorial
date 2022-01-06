@@ -1,8 +1,14 @@
 import '../../App.css'
 import c from './Profile.module.css'
 import PostsContainer from './Posts/PostsContainer'
+import ProfileStatus from './ProfileStatus/ProfileStatus'
 
-function Profile(props){
+function Profile(props){ 
+
+    let newPost = (data) =>{
+        props.createPost(data.postText)
+    }
+
     return (
         <div className = {c.content}>
             <div className = {c.wallpaperChoose}>Choose your wallpaper</div>
@@ -10,10 +16,11 @@ function Profile(props){
                 <div className={c.userInfoFPart}>
                     <img src={props.photos.small} alt="" className = {c.profilePhoto}/>
                     <div className={c.fullName}>{props.name}</div>
-                    <div className={c.aboutUser}>{props.aboutMe}</div>
+                    <ProfileStatus status = {props.status} updateStatus = {props.updateStatus}/>
                 </div>
                 <div className={c.userInfoSPart}>
                     <div className={c.title}>Info Part</div>
+                    <div className={c.text}>{props.aboutMe}</div>
                     <div className={`${c.jobSearch} ${c.text}`}>
                         Looking for a job : <i className={props.lookingForAJob === true ? `fas fa-lightbulb ${c.green}` 
                         : `fas fa-lightbulb ${c.red}`}></i>
@@ -36,7 +43,7 @@ function Profile(props){
                 </div>
                 </div>
             <div className = {c.posts}>
-                <PostsContainer/>
+                <PostsContainer onSubmit={newPost}/>
             </div>
         </div>   
     )

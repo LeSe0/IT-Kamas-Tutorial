@@ -1,11 +1,14 @@
 import './App.css';
 import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
-import Dialogs from './components/Dialogs/Dialogs';
+import { BrowserRouter,Switch } from 'react-router-dom';
 import NavContainerRR from './components/Nav/NavContainer';
-import FindUsers from './components/FindUsers/FindUsers';
+import FindUsersContainer from './components/FindUsers/FindUsersContainer';
 import ProfileContainer from './components/HomePage/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import LoginContainer from './components/LogIn/LoginContainer'
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import Home from './components/Home/Home';
 
 function App() {
   return (
@@ -14,9 +17,14 @@ function App() {
         <HeaderContainer />
         <NavContainerRR/>
         <div className = 'content'>
-          <Route path = '/profile/:userId?'><ProfileContainer/></Route>
-          <Route path = '/dialogs'><Dialogs/></Route>
-          <Route path = '/findUsers'><FindUsers /></Route>
+          <Switch>
+            <Route exact path = '/'><Home /></Route>
+            <Route path = '/profile/:userId?'><ProfileContainer/></Route>
+            <Route path = '/dialogs'><DialogsContainer/></Route>
+            <Route path = '/findUsers'><FindUsersContainer /></Route>
+            <Route path = '/login'><LoginContainer /></Route>
+            <Redirect to = {'/'}/>
+          </Switch>
         </div>
       </div>
     </BrowserRouter>

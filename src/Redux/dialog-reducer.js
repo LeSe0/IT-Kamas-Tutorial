@@ -1,5 +1,4 @@
 const NEW_MESSAGE_ADD = 'NEWMESSAGEADD'
-const NEW_MESSAGE_CHANGE = 'NEWMESSAGECHANGE'
 
 let initialState = {
     persons : [
@@ -79,37 +78,27 @@ let initialState = {
             img : 'https://maxcdn.icons8.com/Share/icon/nolan/Users/user_male1600.png',
             time : '04:00 PM'
         }
-    ],
-    newMessageText : ''
+    ]
 }
 
 const dialogReducer = (state = initialState , action) =>{ 
     switch (action.type) {
         case NEW_MESSAGE_ADD:
-                let messageBody = state.newMessageText;
                 let newMessage = {
                     id : state.messages[state.messages.length - 1].id + 1,
                     img : 'https://maxcdn.icons8.com/Share/icon/nolan/Users/user_male1600.png',
-                    message : messageBody,
+                    message :action.messageBody,
                     time : new Date(Date.now()).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' })
                 }
                 return {
                     ...state,
                     messages : [...state.messages , newMessage],
-                    newMessageText : ''
                 }
-        case NEW_MESSAGE_CHANGE:
-            return {
-                ...state,
-                newMessageText : action.newText
-            };
         default : 
             return state;
     }
 }
 
-export let messageActionCreator = () =>({type : NEW_MESSAGE_ADD})
-
-export let messageTextActionCreator = (text) =>({type : NEW_MESSAGE_CHANGE , newText : text})
+export let messageActionCreator = (messageBody) =>({type : NEW_MESSAGE_ADD, messageBody})
 
 export default dialogReducer

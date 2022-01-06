@@ -20,16 +20,34 @@ header{
 .authContainer{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     grid-area: login;
 }
 
 .navItem{
     color: white;
     font-size: 18px;
+    margin-right: 15px;
 }
 
 .logged{
     color: white;
     font-size: 18px;
+}
+
+.logout{
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon{
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.userInfo{
+    margin-right: 15px;
 }

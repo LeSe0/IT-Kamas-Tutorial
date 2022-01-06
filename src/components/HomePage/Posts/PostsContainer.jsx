@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { postActionCreator , newTextActionCreator } from '../../../Redux/profile-reducer';
 import Posts from './Posts';
 
 // function PostsContainer(props){
@@ -26,17 +25,9 @@ import Posts from './Posts';
 function State(state){
     return {
         post : state.homePage.posts,
-        newPostText : state.homePage.newPostText
     }
 }
 
-function Methods(dispatch){
-    return {
-        updateNewPostText : (body) =>{dispatch(newTextActionCreator(body))},
-        addPost : () =>{dispatch(postActionCreator())}
-    }
-}
-
-const PostsContainer = connect(State , Methods)(Posts)
+const PostsContainer = connect(State , {})(Posts)
 
 export default PostsContainer

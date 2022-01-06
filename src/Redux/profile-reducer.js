@@ -1,6 +1,9 @@
+import { profileAPI } from "../api/api"
+
 const ADD_POST = 'ADDPOST'
 const CHANGE_POST_TEXT = 'CHANGEPOSTTEXT'
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
 
 let initialState = {
     posts : [
@@ -27,6 +30,7 @@ let initialState = {
         },       
     ],
     userInfo: {},
+    status : '',
     contactIcons : [
         'facebook',
         'github',
@@ -37,16 +41,15 @@ let initialState = {
         'chrome',
         'youtube'
     ],
-    newPostText : '',
 }
 
 const profileReducer = (state = initialState , action) =>{
     switch (action.type) {
-        case ADD_POST:{
+        case ADD_POST : {
                 let newPost = {
                     id : state.posts[state.posts.length - 1].id + 1,
                     img : 'https://maxcdn.icons8.com/Share/icon/nolan/Users/user_male1600.png',
-                    postInner : state.newPostText,
+                    postInner : action.newPost,
                     likes : 0,
                     shares : 0
                 }
@@ -56,16 +59,16 @@ const profileReducer = (state = initialState , action) =>{
                     newPostText : ''
                 }
         }
-        case CHANGE_POST_TEXT:{
-            return {
-                ...state,
-                newPostText : action.newText
-            };
-        }
-        case SET_PROFILE_DATA:{
+        case SET_PROFILE_DATA : {
             return {
                 ...state,
                 userInfo : {...action.data}
+            }
+        }
+        case SET_PROFILE_STATUS : {
+            return {
+                ...state ,
+                status : action.statusData
             }
         }
         default : 
@@ -73,8 +76,36 @@ const profileReducer = (state = initialState , action) =>{
     }
 }
 
-export let postActionCreator = () =>({type : ADD_POST})
+export let createPost = (newPost) =>({type : ADD_POST, newPost})
 export let setProfileData = (data) =>({type : SET_PROFILE_DATA, data})
-export let newTextActionCreator = (text) =>({type : CHANGE_POST_TEXT, newText : text})
+export let setProfileStatus = (statusData) =>({type : SET_PROFILE_STATUS , statusData})
+
+export const getProfileInfo = (id) => (dispatch) =>{
+    if(!id){
+        id = 2
+    }
+    profileAPI.getProfileInfo(id).then(response =>{
+        dispatch(setProfileData(response))
+    })
+}
+
+export const getStatus = (id) => (dispatch) =>{
+    profileAPI.getStatus(id ? id : 21645).then(response =>{
+        dispatch(setProfileStatus(response.data))
+    })
+}
+
+export const updateStatus = (status) => (dispatch) =>{
+    profileAPI.updateStatus(status)
+        .then(response =>{
+            if(response.data.resultCode === 0){
+                dispatch(setProfileStatus(status))
+            }
+        })
+}
+
+// if(!id){
+//     id = 21645
+// }
 
 export default profileReducer

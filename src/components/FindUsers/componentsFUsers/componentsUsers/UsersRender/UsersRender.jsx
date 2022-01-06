@@ -1,8 +1,6 @@
 import React from "react";
 import c from './UsersRender.module.css'
 import { NavLink } from 'react-router-dom'
-import axios from "axios";
-import { followAPI } from "../../../../../api/api";
 
 function UsersRender(props){
     return <>
@@ -18,21 +16,7 @@ function UsersRender(props){
                         </NavLink>
                         <button className = {el.followed == true ? c.unFollow : c.follow} disabled = {props.followInReq.some(id =>{return id === el.id})}
                                 onClick = {() =>{
-                                    el.followed == true ?
-                                    followAPI.unfollowRequest(el.id, props.followingInProcess)
-                                        .then(response =>{
-                                            if(response.resultCode === 0){
-                                                props.unfollow(el.id)
-                                                props.followingInProcess(false, el.id)
-                                            }
-                                        }) : 
-                                    followAPI.followRequest(el.id, props.followingInProcess)
-                                        .then(response =>{
-                                            if(response.resultCode === 0){
-                                                props.follow(el.id)
-                                                props.followingInProcess(false, el.id)
-                                            }
-                                        }) 
+                                    el.followed == true ? props.unfollow(el.id): props.follow(el.id)
                                 }}
                             >
                             {el.followed == true ? 'Unfollow' : 'Follow'}

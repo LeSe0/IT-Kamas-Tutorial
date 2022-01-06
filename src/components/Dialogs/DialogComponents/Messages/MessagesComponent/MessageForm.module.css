@@ -4,33 +4,3 @@
     align-items: center;
     margin-top: 20px;
 }
-
-.messageTextArea{
-    outline: none;
-    max-width: 80%;
-    min-width: 80%;
-    max-height: 70px;
-    min-height: 70px;
-    font-size: 17px;
-    background-color: white;
-}
-
-.messageForm > input{
-    height: 70px;
-    width: 100%;
-    background: white;
-    border: 1.4px solid rgb(54, 63, 73);
-    cursor: pointer;
-    font-size: 25px;
-    transition: 0.5s;
-}
-
-.messageTextArea::placeholder{
-    text-align: center;
-}
-
-.messageForm > input:hover{
-    color: #fff;
-    background-color: rgb(54, 63, 73);  
-    border: 1.4px solid rgb(54, 63, 73);
-}

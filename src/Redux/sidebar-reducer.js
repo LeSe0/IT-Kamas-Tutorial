@@ -9,16 +9,16 @@ let initialState = [
             navTo : '/Dialogs',
             class : 'message_nav_button'
         },
-        {
-            navButton : 'Music',
-            navTo : '/Music',
-            class : 'music_nav_button'
-        },
-        {
-            navButton : 'News',
-            navTo : '/News',
-            class : 'news_nav_button'
-        },
+        // {
+        //     navButton : 'Music',
+        //     navTo : '/Music',
+        //     class : 'music_nav_button'
+        // },
+        // {
+        //     navButton : 'News',
+        //     navTo : '/News',
+        //     class : 'news_nav_button'
+        // },
         {
             navButton : 'Find Users',
             navTo : '/findUsers',
