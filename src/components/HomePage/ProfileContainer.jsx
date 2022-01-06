@@ -5,26 +5,28 @@ import Profile from './Profile';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect.js';
 import { compose } from 'redux';
+import { getUserInfo , getContactIcons, getLoggedStatus , getLoggedUserId} from '../../Redux/profile-selector.js';
 
 class ProfileContainer extends React.Component{
     componentDidMount(){
-        this.props.getProfileInfo(this.props.match.params.userId);
-        this.props.getStatus(this.props.match.params.userId);
+        let userId = this.props.match.params.userId
+        this.props.getProfileInfo(userId , this.props.loggedUserId);
+        this.props.getStatus(userId , this.props.loggedUserId);
     }
 
     render(){
         return <>
             <Profile 
                 status = {this.props.status}
-                name = {this.props.fullName}
-                contacts = {{...this.props.contacts}}
-                lookingForAJob = {this.props.lookingForAJob}
-                lookingForAJobDescription = {this.props.lookingForAJobDescription}
-                photos = {{...this.props.photos}}
+                name = {this.props.userInfo.fullName}
+                contacts = {{...this.props.userInfo.contacts}}
+                lookingForAJob = {this.props.userInfo.lookingForAJob}
+                lookingForAJobDescription = {this.props.userInfo.lookingForAJobDescription}
+                photos = {{...this.props.userInfo.photos}}
                 contactIcons = {[...this.props.contactIcons]}
-                aboutMe = {this.props.aboutMe}
+                aboutMe = {this.props.userInfo.aboutMe}
                 updateStatus = {this.props.updateStatus}
-                createPost = {this.props.createPost}
+                createPost = {this.props.userInfo.createPost}
             />
         </>
     }
@@ -32,9 +34,10 @@ class ProfileContainer extends React.Component{
 
 function State(state){
     return {
-        ...state.homePage.userInfo,
-        contactIcons : state.homePage.contactIcons,
-        status : state.homePage.status
+        userInfo : getUserInfo(state) ,
+        contactIcons : getContactIcons(state),
+        status : getLoggedStatus(state),
+        loggedUserId : getLoggedUserId(state),
     }
 }
 

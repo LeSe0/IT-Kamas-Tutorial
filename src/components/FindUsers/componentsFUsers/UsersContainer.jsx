@@ -1,16 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { unfollowThunk, followThunk, getUsers } from '../../../Redux/fUsers-reducer';
+import { unfollowThunk, followThunk, requestUsers } from '../../../Redux/fUsers-reducer';
 import Users from './Users.jsx'
 import Preloader from '../../common/Preloader.jsx'
+import {getUsers , getUsersCount , getInitialPage , getTotalUsers , getIsFetching , getPagesMargin , getFollowInReq , getPagesFSize} from '../../../Redux/users-selector.js'
 
 class UsersContainer extends React.Component{
     componentDidMount(){
-       this.props.getUsers(this.props.initialPage , this.props.usersCount)
+       this.props.requestUsers(this.props.initialPage , this.props.usersCount)
     }
 
     changePage(page){
-        this.props.getUsers(page , this.props.usersCount)
+        this.props.requestUsers(page , this.props.usersCount)
     }
 
     render(){
@@ -33,17 +34,17 @@ class UsersContainer extends React.Component{
 
 function State(state){
     return {
-        users : state.findUsers.users,
-        usersCount : state.findUsers.usersCount,
-        initialPage : state.findUsers.initialPage,
-        totalUsers : state.findUsers.totalUsers,
-        isFetching : state.findUsers.isFetching,
-        pagesMargin : state.findUsers.pagesMargin,
-        pagesFSlice : state.findUsers.pagesFSlice,
-        followInReq : state.findUsers.followInReq
+        users : getUsers(state),
+        usersCount : getUsersCount(state),
+        initialPage : getInitialPage(state),
+        totalUsers : getTotalUsers(state),
+        isFetching : getIsFetching(state),
+        pagesMargin : getPagesMargin(state),
+        pagesFSlice : getPagesFSize(state),
+        followInReq :getFollowInReq(state)
     }
 }
 
 export default connect(State , {
-    followThunk,getUsers, unfollowThunk
+    followThunk,requestUsers, unfollowThunk
 })(UsersContainer)

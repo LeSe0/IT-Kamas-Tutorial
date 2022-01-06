@@ -24,10 +24,6 @@
     align-items: center;
 }
 
-.error{
-    border: 2px solid rgb(255, 67, 67);
-}
-
 .textAreaContainer > input{
     width: 150px;
     height: 60px;
@@ -71,15 +67,13 @@
 }
 
 .logInError{
-    display: block;
-    color: red;
-    font-size: 16px;
+    position: relative;
 }
 
 .logIn{
     width: 427px;
-    display: grid;
-    grid-template-columns: 300px 100px;
+    display: flex;
+    justify-content: center;
     margin-top: 15px;
 }
 
@@ -91,4 +85,34 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.logInput{
+    width: 300px;
+    height: 30px;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid rgb(40, 41, 46);
+}
+
+.logInputContainer{
+    position: relative;
+    padding-left: 10px;
+}
+
+.logInError::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 10px;
+    margin: auto 0;
+    width: 20px;
+    height: 20px;
+    background: url('../../images/warning.png') no-repeat;
+    background-size: cover;
+}
+
+.error{
+    border: 2px solid rgb(255, 67, 67);
 }

@@ -2,21 +2,20 @@ import React from 'react'
 import c from '../Login.module.css'
 import {reduxForm, Field} from 'redux-form'
 import { Input } from '../../common/FormControl'
-import { required , maxLengthCreator } from '../../../utils/validators/validator'
-
-let maxLength = maxLengthCreator(30)
+import { required} from '../../../utils/validators/validator'
 
 function LoginForm(props){
     return <>
-    <div className={c.loginForm}>
+    <div className={c.loginForm}>    
+        {props.error ? <div className={c.formSummaryError}>{props.error}</div> : <div></div>}
         <form onSubmit={props.handleSubmit}>
                 <div className={c.login}>
                     <Field type="text" id="usid" name="login" placeholder="Email or Phone" component = {Input}
-                            validate = {[required , maxLength]} icon = 'fas fa-user'/> 
+                            validate = {[required]} icon = 'fas fa-user'/> 
                 </div>
                 <div className={c.passwordhead}>
                     <Field type="password" id="password" name="password" placeholder="Password" component = {Input} 
-                            validate = {[required , maxLength]} icon = 'fas fa-lock'/>
+                            validate = {[required]} icon = 'fas fa-lock'/>
                 </div>	
                 <div className={c.forgotPassword}>	
                     <label htmlFor="rememberme">    

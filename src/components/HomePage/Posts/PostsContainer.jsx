@@ -1,7 +1,6 @@
-import React from 'react'
 import { connect } from 'react-redux';
 import Posts from './Posts';
-
+import { getPosts } from '../../../Redux/profile-selector';
 // function PostsContainer(props){
 //     let data = props.store.getState().homePage
 
@@ -24,10 +23,10 @@ import Posts from './Posts';
 
 function State(state){
     return {
-        post : state.homePage.posts,
+        post : getPosts(state),
     }
 }
 
-const PostsContainer = connect(State , {})(Posts)
+const PostsContainer = connect(State , null)(Posts)
 
 export default PostsContainer

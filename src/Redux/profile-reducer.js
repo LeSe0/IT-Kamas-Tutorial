@@ -80,17 +80,16 @@ export let createPost = (newPost) =>({type : ADD_POST, newPost})
 export let setProfileData = (data) =>({type : SET_PROFILE_DATA, data})
 export let setProfileStatus = (statusData) =>({type : SET_PROFILE_STATUS , statusData})
 
-export const getProfileInfo = (id) => (dispatch) =>{
-    if(!id){
-        id = 2
-    }
-    profileAPI.getProfileInfo(id).then(response =>{
+export const getProfileInfo = (id , myId) => (dispatch) =>{
+    let userId = id ? id : myId
+    profileAPI.getProfileInfo(userId).then(response =>{
         dispatch(setProfileData(response))
     })
 }
 
-export const getStatus = (id) => (dispatch) =>{
-    profileAPI.getStatus(id ? id : 21645).then(response =>{
+export const getStatus = (id , myId) => (dispatch) =>{
+    let userId = id ? id : myId
+    profileAPI.getStatus(userId).then(response =>{
         dispatch(setProfileStatus(response.data))
     })
 }

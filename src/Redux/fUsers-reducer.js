@@ -82,7 +82,7 @@ export const toggleIsFetching = (count) =>{return {type : TOGGLE_IS_FETCHING , c
 export const followingInProcess = (isFollowing, userId) => ({type : FOLLOWING_IN_PROCESS , isFollowing , userId})
 
 
-export const getUsers = (initialPage , usersCount) => (dispatch) =>{
+export const requestUsers = (initialPage , usersCount) => (dispatch) =>{
     dispatch(toggleIsFetching(true))
     dispatch(selectPage(initialPage))
     usersAPI.getUsers(initialPage , usersCount).then(response =>{

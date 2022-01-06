@@ -18,12 +18,13 @@ export const TextArea = ({input , meta, ...props}) =>{
 export const Input = ({input , meta , ...props}) =>{
     return <>
         <div className={c.logIn}>
-            <div className={c.logInputContainer}>    
-                <span className={c.username}><i className={props.icon}></i></span>            
-                <input {...input} className={meta.error && meta.touched ? `${c.logInput} ${c.error}` : c.logInput} placeholder={props.placeholder}
+            <div className={meta.error && meta.touched ? `${c.logInputContainer} ${c.logInError}` : c.logInputContainer}>    
+                <span className={c.username}><i className={props.icon}></i></span>   
+                <div className={c.logInputContainer}>
+                    <input {...input} className={meta.error && meta.touched ? `${c.error} ${c.logInput}` : c.logInput} placeholder={props.placeholder}
                         type={props.type}/>  
+                </div>         
             </div>
-            {<div className={meta.error && meta.touched ? c.logInError : c.disabled}>{meta.error}</div>}    
         </div>
     </>
 }

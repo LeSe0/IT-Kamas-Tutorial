@@ -12,10 +12,9 @@ function Login(props){
     if(props.isAuth){
         return <Redirect to = 'profile' />
     }
-
     return (
         <div className={c.loginPage}>
-            <h1>Login</h1>
+            <h1 className={c.title}>Login</h1>
             <LoginForm onSubmit={onSubmit}/>
         </div>
     )

@@ -1,13 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Header from './Header'
-import { getUserData , logout } from '../../Redux/auth-reducer';
+import { logout } from '../../Redux/auth-reducer';
 
 class HeaderContainer extends React.Component{
-
-    componentDidMount(){
-        this.props.getUserData()
-    }
 
     render(){
         return (
@@ -23,6 +19,5 @@ function State(state){
 }
 
 export default connect(State , {
-    getUserData,
     logout
 })(HeaderContainer)
